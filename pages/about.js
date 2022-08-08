@@ -5,7 +5,7 @@ const About = () => {
     <>
       <div>About Page</div>
       <p>This an app to find the latest DJ and other musical events.</p>
-      <p>Version 1.0.0</p>
+      <p>Version 1.0.1</p>
     </>
   );
 };
