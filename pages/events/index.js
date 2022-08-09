@@ -1,14 +1,30 @@
-import React from "react";
-import Layout from "../../components/Layout";
+import Layout from "@/components/Layout";
+import { API_URL } from "@/config/index";
 
-const EventsPage = () => {
+import { EventItem } from "@/components/EventItem";
+
+export default function EventPage({ events }) {
+  console.log(events);
   return (
     <>
-      <Layout title="DJ Events">
-        <h1>My Events</h1>
+      <Layout>
+        <h1>Events</h1>
+        {events.length === 0 && <h3>No Events Found</h3>}
+
+        {events.map((event) => {
+          return <EventItem event={event} key={event.id} />;
+        })}
       </Layout>
     </>
   );
-};
+}
 
-export default EventsPage;
+export async function getServerSideProps() {
+  const res = await fetch(`${API_URL}/api/events`);
+
+  const events = await res.json();
+
+  return {
+    props: { events },
+  };
+}

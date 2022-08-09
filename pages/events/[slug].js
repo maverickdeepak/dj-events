@@ -1,20 +1,29 @@
 import React from "react";
-import { useRouter } from "next/router";
-import Layout from "../../components/Layout";
+import { API_URL } from "@/config/index";
+import Layout from "@/components/Layout";
 
-const EventPage = () => {
-  const router = useRouter();
-  console.log(router);
-
+const EventPage = ({ event }) => {
   return (
     <Layout>
       <div>
-        <h1>My Event</h1>
-        <h3>{router.query.slug}</h3>
-        <button onClick={() => router.push("/")}>Home</button>
+        <h1>{event.name}</h1>
       </div>
     </Layout>
   );
 };
+
+export async function getServerSideProps({ query: { slug } }) {
+  console.log(slug);
+  const res = await fetch(`${API_URL}/api/events/${slug}`);
+  const events = await res.json();
+
+  console.log(events);
+
+  return {
+    props: {
+      event: events[0],
+    },
+  };
+}
 
 export default EventPage;
