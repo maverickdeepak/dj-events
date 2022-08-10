@@ -10,7 +10,7 @@ const Layout = ({ title, children, description, keywords }) => {
   const router = useRouter();
 
   return (
-    <>
+    <div>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -20,7 +20,7 @@ const Layout = ({ title, children, description, keywords }) => {
       {router.pathname === "/" && <Showcase />}
       <div className={styles.container}>{children}</div>
       <Footer />
-    </>
+    </div>
   );
 };
 

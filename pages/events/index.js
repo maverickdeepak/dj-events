@@ -4,7 +4,6 @@ import { API_URL } from "@/config/index";
 import { EventItem } from "@/components/EventItem";
 
 export default function EventPage({ events }) {
-  console.log(events);
   return (
     <>
       <Layout>
@@ -20,11 +19,11 @@ export default function EventPage({ events }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${API_URL}/api/events`);
+  const res = await fetch(`${API_URL}/api/events?[populate]=*`);
 
-  const events = await res.json();
+  const { data } = await res.json();
 
   return {
-    props: { events },
+    props: { events: data },
   };
 }
