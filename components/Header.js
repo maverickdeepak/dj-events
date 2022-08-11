@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import styles from "@/styles/Header.module.css";
+import Search from "./Search";
 
 const Header = () => {
   return (
@@ -11,10 +12,14 @@ const Header = () => {
           <a>DJ Events</a>
         </Link>
       </div>
+      <Search />
       <nav>
         <ul>
           <li>
             <Link href="/events">Events</Link>
+          </li>
+          <li>
+            <Link href="/events/add">Add Event</Link>
           </li>
         </ul>
       </nav>

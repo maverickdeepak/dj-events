@@ -24,9 +24,9 @@ export default function HomePage({ events }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(
-    `${API_URL}/api/events?sort=date:desc&pagination[limit]=3&populate=*`
+    `${API_URL}/api/events?sort=date:ASC&pagination[limit]=3&populate=*`
   );
 
   const { data } = await res.json();

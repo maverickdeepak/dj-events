@@ -6,12 +6,15 @@ import styles from "@/styles/EventItem.module.css";
 
 export const EventItem = ({ event }) => {
   const { attributes } = event;
-  console.log(attributes);
   return (
     <div className={styles.event}>
       <div className={styles.img}>
         <Image
-          src={attributes.image.data.attributes.formats.thumbnail.url}
+          src={
+            event.image
+              ? attributes.image.data.attributes.formats.thumbnail.url
+              : "/images/event-default.png"
+          }
           alt={event.name}
           width={170}
           height={100}
